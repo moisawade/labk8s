@@ -6,7 +6,8 @@ USER root
 RUN mkdir -p /app && chown -R 1001:0 /app
 
 # Copie les fichiers HTML
-COPY html/ /app
+ADD index.html /app/
+ADD index.png /app/
 
 # Revenir à l'utilisateur non-root
 USER 1001
