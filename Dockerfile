@@ -1,10 +1,17 @@
-FROM bitnami/nginx
+FROM bitnami/nginx:latest
 
-ADD index.html /app/
-ADD index.png /app/
+USER root
 
-# RUN chown -R 1001:0 /app
-RUN chown -R 777 /app
+# Crée un dossier accessible
+RUN mkdir -p /app && chown -R 1001:0 /app
 
+# Copie les fichiers HTML
+COPY html/ /app
+
+# Revenir à l'utilisateur non-root
+USER 1001
+
+# Définir le répertoire public
+ENV NGINX_DOCUMENT_ROOT="/app"
 
 EXPOSE 8080
