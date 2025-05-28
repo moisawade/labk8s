@@ -1,9 +1,9 @@
 FROM bitnami/nginx
 
-# # ADD index.html /app/
-# # ADD index.png /app/
+ADD index.html /app/
+ADD index.png /app/
 
-ADD index.html /opt/bitnami/nginx/html
-ADD index.png /opt/bitnami/nginx/html
+RUN chown -R 1001:0 /app
+
 
 EXPOSE 8080
